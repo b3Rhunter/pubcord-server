@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-const PORT = 10000 || 3030
+const PORT = process.env.PORT || 3030
 const server = app.listen(PORT, () => console.log(`Listening on ${PORT}\n`))
 
 const messages = [
@@ -19,7 +19,6 @@ const io = new Server(server, {
   }
 })
 
-
 io.on('connection', (socket) => {
   console.log('a user connected')
 
@@ -31,4 +30,10 @@ io.on('connection', (socket) => {
     messages.push(msg)
     io.emit('new message', messages)
   })
+})
+
+// Set the Access-Control-Allow-Origin header
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://pubcord-lovat.vercel.app')
+  next()
 })
