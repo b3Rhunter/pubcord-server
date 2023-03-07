@@ -15,9 +15,10 @@ const messages = [
 const { Server } = require("socket.io");
 const io = new Server(server, {
   cors: {
-    origin: "https://pubcord-lovat.vercel.app/"
+    origin: ["https://pubcord-lovat.vercel.app"]
   }
 })
+
 
 io.on('connection', (socket) => {
   console.log('a user connected')
