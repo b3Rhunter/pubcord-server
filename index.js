@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-const PORT = process.env.PORT || 3030
+const PORT = 10000 || 3030
 const server = app.listen(PORT, () => console.log(`Listening on ${PORT}\n`))
 
 const messages = [
