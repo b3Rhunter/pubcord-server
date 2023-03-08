@@ -2,8 +2,11 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 
-const PORT = 10000 || 3030
+const PORT = process.env.PORT || 3030
 const server = app.listen(PORT, () => console.log(`Listening on ${PORT}\n`))
+
+app.use(cors())
+app.use(express.json())
 
 const messages = [
   {
