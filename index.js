@@ -2,8 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 
-const PORT = 10000 || 3030
-
+const PORT = process.env.PORT || 3030 // Use process.env.PORT or 3030 if PORT is not defined
 
 app.use(cors())
 app.use(express.json())
@@ -46,3 +45,5 @@ io.on('connection', (socket) => {
     io.emit('new message', messages)
   })
 })
+
+httpServer.listen(PORT, () => console.log(`Listening on ${PORT}\n`))
