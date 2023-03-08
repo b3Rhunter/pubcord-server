@@ -13,14 +13,6 @@ app.get('/', async (req, res) => {
   })
 })
 
-const messages = [
-  {
-    channel: "1",
-    account: "pub-gmn.eth",
-    text: "Welcome to PubCord!"
-  },
-]
-
 const { Server } = require("socket.io");
 const httpServer = require("http").createServer(app); // Define httpServer variable
 const io = new Server(httpServer, {
@@ -35,6 +27,14 @@ const io = new Server(httpServer, {
 
 io.on('connection', (socket) => {
   console.log('a user connected')
+
+  const messages = [
+    {
+      channel: "1",
+      account: "pub-gmn.eth",
+      text: "Welcome to PubCord!"
+    },
+  ]
 
   socket.on('get messages', () => {
     io.emit('get messages', messages)
