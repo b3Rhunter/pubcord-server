@@ -1,14 +1,9 @@
-const createServer = require('http')
-const Server = require('socket.io')
-
 const express = require('express')
+const cors = require('cors')
 const app = express()
-
-const httpServer = createServer();
 
 const PORT = process.env.PORT || 3030
 const server = app.listen(PORT, () => console.log(`Listening on ${PORT}\n`))
-
 
 const messages = [
   {
@@ -18,16 +13,12 @@ const messages = [
   },
 ]
 
-
-const io = new Server(httpServer, {
+const { Server } = require("socket.io");
+const io = new Server(server, {
   cors: {
-    origin: "https://pubcord-lovat.vercel.app/",
-    allowedHeaders: ["my-custom-header"],
-    credentials: "true",
+    origin: "https://pubcord-lovat.vercel.app/"
   }
 })
-
-app.use(express.json())
 
 io.on('connection', (socket) => {
   console.log('a user connected')

@@ -2,8 +2,14 @@
   "name": "pubcord",
   "version": "0.0.1",
   "description": "pubcord server",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
+    "nodemon": "^2.0.21",
     "socket.io": "^4.6.1"
   }
 }
