@@ -2,11 +2,19 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 
+
 const PORT = 10000 || 3030
+
 const server = app.listen(PORT, () => console.log(`Listening on ${PORT}\n`))
 
 app.use(cors())
 app.use(express.json())
+
+app.get('/', async (req, res) => {
+  res.status(200).send({
+    message: 'Pubcord Online...'
+  })
+})
 
 const messages = [
   {
@@ -19,7 +27,7 @@ const messages = [
 const { Server } = require("socket.io");
 const io = new Server(server, {
   cors: {
-    origin: '*'
+    origin: "*"
   }
 })
 
@@ -35,3 +43,5 @@ io.on('connection', (socket) => {
     io.emit('new message', messages)
   })
 })
+
+
