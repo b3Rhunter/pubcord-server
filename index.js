@@ -25,11 +25,16 @@ const messages = [
 ]
 
 const { Server } = require("socket.io");
-const io = new Server(server, {
+const io = require('socket.io')(httpServer, {
   cors: {
-    origin: "*"
+    origin: "https://pubcord-lovat.vercel.app",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true,
+    allowedTransports: ["websocket", "polling"]
   }
-})
+});
+
 
 io.on('connection', (socket) => {
   console.log('a user connected')
