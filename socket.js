@@ -2,7 +2,10 @@ const { Server } = require('socket.io');
 
 const io = new Server({
   cors: {
-    origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+    origin: process.env.CORS_ORIGIN || ['http://localhost:3000', 'https://pubcord-lovat.vercel.app'],
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
   },
 });
 
